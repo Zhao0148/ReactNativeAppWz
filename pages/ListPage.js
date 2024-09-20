@@ -6,27 +6,44 @@ import {
   StyleSheet,
   Text,
   View,
+  Pressable,
 } from "react-native";
-
+import { styles, textStyles, buttonStyles } from "../utils/styles/styles";
 export default function ListPage({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
-      <FlatList
-        data={data}
-        renderItem={({ item }) => (
-          <Text
-            style={{
-              padding: 16,
-              fontSize: 20,
-              backgroundColor: "aqua",
-              margin: 2,
-            }}
-          >
-            {item.title}
-          </Text>
-        )}
-        keyExtractor={(item) => item.id}
-      />
+      <View style={buttonStyles.buttonContainer}>
+        <Pressable
+          style={buttonStyles.button}
+          onPress={() => navigation.navigate("Home")}
+        >
+          <Text style={buttonStyles.buttonText}>{"Home Page"}</Text>
+        </Pressable>
+        <Pressable
+          style={buttonStyles.button}
+          onPress={() => navigation.navigate("About")}
+        >
+          <Text style={buttonStyles.buttonText}>{"About Page"}</Text>
+        </Pressable>
+      </View>
+      <View style={specificStyles.container}>
+        <FlatList
+          data={data}
+          renderItem={({ item }) => (
+            <Text
+              style={{
+                padding: 16,
+                fontSize: 20,
+                backgroundColor: "white",
+                margin: 2,
+              }}
+            >
+              {item.title}
+            </Text>
+          )}
+          keyExtractor={(item) => item.id}
+        />
+      </View>
     </SafeAreaView>
   );
 }
@@ -117,12 +134,13 @@ const data = [
     title: "Item 21",
   },
 ];
-const styles = StyleSheet.create({
+const specificStyles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    // alignItems: "center",
+    flexDirection: "row",
+    backgroundColor: "000",
     justifyContent: "center",
-    // paddingTop: 48,
+    width: '100%', 
+    alignSelf: 'stretch', 
   },
 });

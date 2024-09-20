@@ -6,17 +6,31 @@ import {
   Image,
   ScrollView,
   Button,
+  Pressable
 } from "react-native";
-
+import { styles, textStyles, buttonStyles } from "../utils/styles/styles";
 export default function AboutPage({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
-        <View>
-          <Button
-            title="Home Page"
+        <View> 
+          <View style={buttonStyles.buttonContainer}>
+
+          <Pressable
+            style={buttonStyles.button}
             onPress={() => navigation.navigate("Home")}
-          ></Button>
+          >
+            <Text style={buttonStyles.buttonText}>{"Home Page"}</Text>
+          </Pressable>
+          <Pressable
+            style={buttonStyles.button}
+            onPress={() => navigation.navigate("List")}
+          >
+            <Text style={buttonStyles.buttonText}>{"List Page"}</Text>
+          </Pressable>
+            </View>
+            <View style={styles.container}>
+
           <Image
             source={require("../assets/dog.png")}
             style={{
@@ -25,8 +39,9 @@ export default function AboutPage({ navigation }) {
               width: 300,
               height: 400,
             }}
-          />
-          <Text>
+            />
+            </View>
+          <Text style={textStyles.p}>
             Lorem Ipsum: Lorem ipsum dolor sit amet, consectetur adipiscing
             elit, sed do eiusmod tempor incididunt ut labore et dolore magna
             aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
@@ -75,12 +90,3 @@ export default function AboutPage({ navigation }) {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    // alignItems: "center",
-    // justifyContent: "center",
-    // paddingTop: 48,
-  },
-});
